@@ -32,7 +32,7 @@ public class Hauptfenster extends JFrame {
         initComponents();
         s = new Motor_Steuerung();
         gps = new GPS();
-        ms = new Manuelle_Steuerung();
+        ms = new Manuelle_Steuerung(s);
         ms.setVisible(false);
     }
 
@@ -163,10 +163,11 @@ public class Hauptfenster extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,8 +185,14 @@ public class Hauptfenster extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void close(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_close
-        close();
-        schreiben("Programm über Button beendet");
+        if (s.speed_m1 + s.speed_m2 + s.speed_m3 + s.speed_m4 == 0){
+            close();
+            schreiben("Programm über Button beendet");
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(null, "Motoren erst ausschalten!","Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_close
 
     private void motor_test(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motor_test
