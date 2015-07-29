@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net-it_adviser.gps</groupId>
+	<artifactId>GpsdTest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jgoodies</groupId>
+			<artifactId>jgoodies-forms</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jgoodies</groupId>
+			<artifactId>jgoodies-common</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
+		<!-- Konnte nicht direkt verwendet werden, da zunächst der JSON Output 
+			mit dem Befehl: -->
+		<!-- gpsEndPoint.voidCommand("?WATCH={\"enable\":true,\"json\":true};\""); -->
+		<!-- gestartet werden musste -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>de.taimos</groupId> -->
+		<!-- <artifactId>gpsd4java</artifactId> -->
+		<!-- <version>1.1.0</version> -->
+		<!-- </dependency> -->
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>net.it_adviser.gps.GpsdTestApp</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
